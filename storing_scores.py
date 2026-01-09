@@ -33,10 +33,10 @@ def load_scores():
 
     return scores
 
-def store_score(player,computer):
+def store_score(date,player,computer):
     previous_scores = load_scores()
     scores_record = open("scores_record.txt",'w')
-    matches = previous_scores+[[str("Date"),str(player),str(computer),str(overall_winner(player,computer))]] #Loads previous scores and appends new score
+    matches = previous_scores+[[str(date),str(player),str(computer),str(overall_winner(player,computer))]] #Loads previous scores and appends new score
     #matches.append(previous_scores)
     print(matches)
 
