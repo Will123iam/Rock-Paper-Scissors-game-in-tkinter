@@ -66,8 +66,9 @@ def display_animation(rock_img, paper_img, scissors_img):
     tk.Label(game_tab, image=scissors_img).pack()
     wait()
     clear_window()
-    tk.Label(text="Shoot!").pack()
+    tk.Label(game_tab,text="Shoot!").pack()
     wait()
+    time.sleep(0.5)
     clear_window()
     
 

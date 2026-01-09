@@ -1,8 +1,7 @@
 from validation import *
 from window import *
 from storing_scores import *
-import random
-import time, datetime
+import random, time, datetime
 
 def get_date():
     date_now = datetime.datetime.now()
