@@ -27,7 +27,7 @@ def loop():
 
     clear_window()
     display_score(p,c)
-    store_score(get_date(),p,c) #Pass scores to be stored\
+    store_score(get_date(),p,c) #Pass scores to be stored
 
     new_score = [str(get_date()),str(p),str(c),overall_winner(p,c)] #A solution as passing directly into display_scores_table caused issues
     display_scores_table([new_score])

@@ -1,3 +1,4 @@
+from window import *
 #Storing and loading the latest scores
 
 def overall_winner(player,computer):
@@ -36,17 +37,36 @@ def load_scores():
 def store_score(date,player,computer):
     previous_scores = load_scores()
     scores_record = open("scores_record.txt",'w')
-    matches = previous_scores+[[str(date),str(player),str(computer),str(overall_winner(player,computer))]] #Loads previous scores and appends new score
+    if date != False: matches = previous_scores+[[str(date),str(player),str(computer),str(overall_winner(player,computer))]] #Loads previous scores and appends new score
+    else: matches = previous_scores
     #matches.append(previous_scores)
     print(matches)
+    print("Items to remove: ",table1.removed_itmes)
+
+    new_remove_str = []
+
+    for match in table1.removed_itmes:
+        temp=[]
+        for item in match:
+            temp.append(str(item))
+        new_remove_str.append(temp)
+    
+    print("New Removales: ",new_remove_str)
 
     for match in matches:
-        for data in match: scores_record.write(str(data)+',')
-        scores_record.write('\n')
+        if match in new_remove_str:
+            print(True)
+        else:
+            for data in match: scores_record.write(str(data)+',')
+            scores_record.write('\n')
 
     scores_record.close()
 
     return "Saved!"
+
+def store_score_close():
+    store_score(False,0,0)
+    win.destroy()
 
 
 #store_score('4','3') #Temp test call

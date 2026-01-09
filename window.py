@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 #from rock_paper_sisors import *
+from table_class import *
 import time
 
 win=tk.Tk()
@@ -84,17 +85,26 @@ def display_scores_table(scores):
         list = []
         for item in round:
             list.append(item)
-        scores_table.insert("",tk.END,values=(list))
+        table1.insert(list)
+
 
 
 headings_table1=["Date","Player","Computer","Winner"]
+widths_table1=[50,100,100,100]
 
-scores_table = ttk.Treeview(tally_tab,columns=(headings_table1), show="headings")
+table1 = table(tally_tab, headings_table1)
+#scores_table = ttk.Treeview(tally_tab,columns=(headings_table1), show="headings")
 
 for heading in headings_table1:
-    scores_table.heading(heading, text=heading, anchor="center") #sets heading text
+    for width in widths_table1:
+        table1.create_heading(heading, heading)
+        table1.define_column(heading, width)
+#    scores_table.heading(heading, text=heading, anchor="center") #sets heading text
 
-scores_table.pack(fill="both", expand=True) 
+#scores_table.column(heading,anchor='center', stretch='no', width=20)
+
+#scores_table.pack(fill="both", expand=True) 
+table1.pack(fill="both", expand=True)
 selection_menu.add(tally_tab, text="Tally") #Adds tab to notebook
 
 
