@@ -1,7 +1,6 @@
 from window import *
 from rock_paper_sisors import *
 import tkinter as tk
-import time
 
 #Tab 1 functions
 def start_game():
@@ -22,8 +21,5 @@ def get_scores():
     return names
 
 display_scores_table(load_scores())
-
-
-
 
 win.mainloop()
