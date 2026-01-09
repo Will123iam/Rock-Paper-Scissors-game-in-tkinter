@@ -71,15 +71,31 @@ def display_animation(rock_img, paper_img, scissors_img):
     clear_window()
     
 
-
-
-selection_menu.add(game_tab, text="Game")
+selection_menu.add(game_tab, text="Game") #Adds tab to notebook
 
 
 #Tab 2
 tally_tab=ttk.Frame(selection_menu)
 
-selection_menu.add(tally_tab, text="Tally")
+    #Table (Using TreeView) - stores player and computer scores at the end of a match
+def display_scores_table(scores):
+    for round in scores:
+        list = []
+        for item in round:
+            list.append(item)
+        scores_table.insert("",tk.END,values=(list))
+
+
+headings_table1=["Date","Player","Computer","Winner"]
+
+scores_table = ttk.Treeview(tally_tab,columns=(headings_table1), show="headings")
+
+for heading in headings_table1:
+    scores_table.heading(heading, text=heading, anchor="center") #sets heading text
+
+scores_table.pack(fill="both", expand=True) 
+selection_menu.add(tally_tab, text="Tally") #Adds tab to notebook
+
 
 #Packing
 selection_menu.pack()
