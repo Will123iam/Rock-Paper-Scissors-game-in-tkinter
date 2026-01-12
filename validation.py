@@ -2,6 +2,23 @@
 from window import *
 import time
 
+def animate_comp_selection(x,rock_img,paper_img,sicssor_img,label):
+
+    if x==0:
+        label.destroy()
+        label=tk.Label(selection_frame_comp, image=rock_img,bg="coral")
+        label.grid(row=1,column=0,sticky='w',padx=5,pady=5)
+    elif x == 1:
+        label.destroy()
+        label=tk.Label(selection_frame_comp, image=paper_img,bg="coral")
+        label.grid(row=1,column=0,sticky='w',padx=5,pady=5)
+    else:
+        label.destroy()
+        label=tk.Label(selection_frame_comp, image=sicssor_img,bg="coral")
+        label.grid(row=1,column=0,sticky='w',padx=5,pady=5)
+
+
+
 def validate_str(value,options):
     if value in options: return True
     else: return False
@@ -19,10 +36,15 @@ def Score(player,computer,rounds):
         else: return "Computer wins!"
     print(player,"-",computer)
 
-def wait():
+def wait(rock_img,paper_img,sicssor_img):
+    x=1
+    label=tk.Label(selection_frame_comp, image=rock_img,bg="coral")
     while choice_entry.get() == "":
         win.update()
         time.sleep(0.1)
+        animate_comp_selection(x,rock_img,paper_img,sicssor_img,label)
+        x+=1
+        if x >2: x=0
 
 def key_press():
     pressed = False
