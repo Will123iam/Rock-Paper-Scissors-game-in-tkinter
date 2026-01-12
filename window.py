@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 #from rock_paper_sisors import *
+from table_class import *
 import time
 
 win=tk.Tk()
@@ -66,20 +67,46 @@ def display_animation(rock_img, paper_img, scissors_img):
     tk.Label(game_tab, image=scissors_img).pack()
     wait()
     clear_window()
-    tk.Label(text="Shoot!").pack()
+    tk.Label(game_tab,text="Shoot!").pack()
     wait()
+    time.sleep(0.5)
     clear_window()
     
 
-
-
-selection_menu.add(game_tab, text="Game")
+selection_menu.add(game_tab, text="Game") #Adds tab to notebook
 
 
 #Tab 2
 tally_tab=ttk.Frame(selection_menu)
 
-selection_menu.add(tally_tab, text="Tally")
+    #Table (Using TreeView) - stores player and computer scores at the end of a match
+def display_scores_table(scores):
+    for round in scores:
+        list = []
+        for item in round:
+            list.append(item)
+        table1.insert(list)
+
+
+
+headings_table1=["Date","Player","Computer","Winner"]
+widths_table1=[50,100,100,100]
+
+table1 = table(tally_tab, headings_table1)
+#scores_table = ttk.Treeview(tally_tab,columns=(headings_table1), show="headings")
+
+for heading in headings_table1:
+    for width in widths_table1:
+        table1.create_heading(heading, heading)
+        table1.define_column(heading, width)
+#    scores_table.heading(heading, text=heading, anchor="center") #sets heading text
+
+#scores_table.column(heading,anchor='center', stretch='no', width=20)
+
+#scores_table.pack(fill="both", expand=True) 
+table1.pack(fill="both", expand=True)
+selection_menu.add(tally_tab, text="Tally") #Adds tab to notebook
+
 
 #Packing
 selection_menu.pack()

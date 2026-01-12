@@ -1,7 +1,12 @@
 from validation import *
 from window import *
-import random
-import time
+from storing_scores import *
+import random, time, datetime
+
+def get_date():
+    date_now = datetime.datetime.now()
+    date_now = date_now.strftime("%x") #Format date to MM/DD/YYYY
+    return date_now
 
 def loop():
     clear_window()
@@ -22,6 +27,10 @@ def loop():
 
     clear_window()
     display_score(p,c)
+    store_score(get_date(),p,c) #Pass scores to be stored
+
+    new_score = [str(get_date()),str(p),str(c),overall_winner(p,c)] #A solution as passing directly into display_scores_table caused issues
+    display_scores_table([new_score])
 
     #Game over message
     tk.Label(game_tab, text="Game Over!", font=("Arial", 20)).pack()
