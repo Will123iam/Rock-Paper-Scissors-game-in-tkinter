@@ -6,7 +6,7 @@ import time
 
 win=tk.Tk()
 win.title("Rock Paper Scissors")
-win.geometry("500x400")
+win.geometry("500x300")
 win.config(bg='turquoise')
 
 #class images():
@@ -23,6 +23,11 @@ win.config(bg='turquoise')
 rock_img=tk.PhotoImage(file="images/rock.png")
 paper_img=tk.PhotoImage(file="images/paper.png")
 scissors_img=tk.PhotoImage(file="images/scissors.png")
+rock_img1=rock_img.subsample(3)
+
+new_rock_img=rock_img.subsample(5)
+new_paper_img=paper_img.subsample(14)
+new_scissors_img=scissors_img.subsample(7)
 
 #rock_img_scale_but = rock_img.subsample(2)
 

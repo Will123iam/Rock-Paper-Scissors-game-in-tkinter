@@ -40,8 +40,9 @@ def loop():
 
     #Game over message
     tk.Label(game_tab, text="Game Over!", font=("Arial", 20)).grid(row=0,column=0)
+    tk.Label(game_tab, text="Well done :)", font=("Arial", 20)).grid(row=1,column=0)
     tk.Label(game_tab, text="Press the hand to play again!", font=("Arial", 15)).grid(row=2,column=1)
-    rock_img_butt = tk.Button(game_tab, command=num_rounds, image=rock_img)
+    rock_img_butt = tk.Button(game_tab, command=num_rounds, image=rock_img1)
     rock_img_butt.grid(row=1,column=1)
 
 
@@ -82,9 +83,9 @@ def choice_selection(rock_img,paper_img,sicssor_img):
 
 def play_round(rock_img=rock_img, paper_img=paper_img, scissors_img=scissors_img):
     winner = ""
-    new_rock_img=rock_img.subsample(5)
-    new_paper_img=paper_img.subsample(14)
-    new_scissors_img=scissors_img.subsample(7)
+    #new_rock_img=rock_img.subsample(5)
+    #new_paper_img=paper_img.subsample(14)
+    #new_scissors_img=scissors_img.subsample(7)
 
     computer, player = choice_selection(new_rock_img,new_paper_img,new_scissors_img)
 
