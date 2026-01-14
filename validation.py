@@ -1,6 +1,6 @@
 #Validates imputs
 from window import *
-import time
+import time, datetime
 
 def animate_comp_selection(x,rock_img,paper_img,sicssor_img,label): #Cycles through all 3 images on computers side
 
@@ -62,3 +62,8 @@ def key_press():
     clear_window()
 
     return pressed
+
+def get_date():
+    date_now = datetime.datetime.now()
+    date_now = date_now.strftime("%x") #Format date to MM/DD/YYYY
+    return date_now
