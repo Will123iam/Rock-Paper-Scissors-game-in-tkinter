@@ -32,3 +32,36 @@ class table():
 
     def pack(self, **kwargs):
         self.tree.pack(**kwargs)
+
+class tk_frames(tk.Frame):
+    def __init__(self,window,colums,rows,*args,**kwargs):
+        ttk.Frame.__init__(self,window,*args,**kwargs)
+
+        #Set up colums/rows
+        for colum in range(colums): self.columnconfigure(colum,weight=1)
+        for row in range(rows): self.rowconfigure(row,weight=1)
+
+    def grids(self,row,column,sticky=None):
+        self.grid(row=row,column=column,sticky=sticky)
+
+#class lable_15_arial(tk.Label):
+#    def __init__(self,window,row,column,**kwargs):
+#        tk.Label.__init__(self,window,font=("Arial",15),**kwargs)
+        
+        #if use_grid:
+#        self.grid(row=row,column=column)
+
+class destroy_widgets():
+    def __init__(self):
+        pass
+
+    def destroy(*args):
+        for widget in [*args]:
+            widget.destroy()
+
+class load_image(tk.PhotoImage):
+    def __init__(self,file):
+        tk.PhotoImage.__init__(self,file=file)
+
+
+

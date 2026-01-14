@@ -2,7 +2,7 @@
 from window import *
 import time
 
-def animate_comp_selection(x,rock_img,paper_img,sicssor_img,label):
+def animate_comp_selection(x,rock_img,paper_img,sicssor_img,label): #Cycles through all 3 images on computers side
 
     if x==0:
         label.destroy()

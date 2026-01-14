@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 #from rock_paper_sisors import *
-from table_class import *
+from class_file import *
 import time
 
 win=tk.Tk()
@@ -19,12 +19,11 @@ win.config(bg='turquoise')
 #    def scale_up(self,scale):
 #        return self.image.zoom(scale)
 
+rock_img=load_image("images/rock.png")
+paper_img=load_image("images/paper.png")
+scissors_img=load_image("images/scissors.png")
 
-rock_img=tk.PhotoImage(file="images/rock.png")
-paper_img=tk.PhotoImage(file="images/paper.png")
-scissors_img=tk.PhotoImage(file="images/scissors.png")
 rock_img1=rock_img.subsample(3)
-
 new_rock_img=rock_img.subsample(5)
 new_paper_img=paper_img.subsample(14)
 new_scissors_img=scissors_img.subsample(7)
@@ -66,63 +65,18 @@ s.theme_use('clam')
 s.configure('green_style',background='green')
 s.configure('Frame1.TFrame', background='sky blue')
 
-selection_menu = ttk.Notebook(win)
+selection_menu = ttk.Notebook(win) #Creates the tabs to switch between
 
 #Tab 1
-game_tab=ttk.Frame(selection_menu)
+game_tab = tk_frames(selection_menu,3,3) #Main single player game tab
 
-    #Placement grid
-game_tab.columnconfigure(0,weight=2)
-game_tab.columnconfigure(1,weight=1)
-game_tab.columnconfigure(2,weight=1)
-game_tab.rowconfigure(0,weight=1)
-game_tab.rowconfigure(1,weight=1)
-game_tab.rowconfigure(2,weight=1)
-
-    #Inner frame start
-start_frame = ttk.Frame(game_tab,relief='flat',style='Frame1.TFrame')
-
-start_frame.columnconfigure(0,weight=1)
-start_frame.columnconfigure(1,weight=1)
-start_frame.columnconfigure(2,weight=1)
-start_frame.rowconfigure(0,weight=1)
-start_frame.rowconfigure(1,weight=1)
-start_frame.rowconfigure(2,weight=1)
+start_frame = tk_frames(game_tab,3,3,relief='flat',style='Frame1.TFrame') #Inner frame start
+selction_frame = tk_frames(game_tab,3,3,relief='flat',style='Frame1.TFrame') #Inner frame rounds selection
+selection_but_frame = tk_frames(game_tab,3,3,relief='raised') #Inner frame for player side
+selection_frame_comp = tk_frames(game_tab,2,3,relief='raised') #Inner fram for computer
 
 start_frame.grid(row=1,column=1)
-
-    #Inner frame rounds selection
-selction_frame = ttk.Frame(game_tab,relief='flat',style='Frame1.TFrame')
-
-selction_frame.columnconfigure(0,weight=1)
-selction_frame.columnconfigure(1,weight=1)
-selction_frame.columnconfigure(2,weight=1)
-selction_frame.rowconfigure(0,weight=1)
-selction_frame.rowconfigure(1,weight=1)
-selction_frame.rowconfigure(2,weight=1)
-
-    #Inner frame for player side
-selection_but_frame = ttk.Frame(game_tab,relief='raised')
-
-selection_but_frame.columnconfigure(0,weight=1)
-selection_but_frame.columnconfigure(1,weight=1)
-selection_but_frame.columnconfigure(2,weight=1)
-selection_but_frame.rowconfigure(0,weight=1)
-selection_but_frame.rowconfigure(1,weight=1)
-selection_but_frame.rowconfigure(2,weight=1)
-
 #selection_but_frame.grid(row=2,column=2,sticky='e')
-
-    #Inner fram for computer
-selection_frame_comp = ttk.Frame(game_tab,relief='raised')
-
-selection_frame_comp.columnconfigure(0,weight=1)
-selection_frame_comp.columnconfigure(1,weight=1)
-#selection_frame_comp.columnconfigure(2,weight=1)
-selection_frame_comp.rowconfigure(0,weight=1)
-selection_frame_comp.rowconfigure(1,weight=1)
-selection_frame_comp.rowconfigure(2,weight=1)
-
 #selection_frame_comp.grid(row=2,column=0,sticky='e')
 
 def welcome():
@@ -167,27 +121,21 @@ def show_images_selction(rock_img,paper_img,sicssors_img): #displayes the hand i
     tk.Label(selection_frame_comp,text="Choice: ??",font=("Arial",15),bg='sky blue').grid(row=2,column=0,sticky='s',padx=5,pady=5)
 
 
-def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_choice):
-
-    def destroy(image,label,image2):
-        image.destroy()
-        label.destroy()
-        image2.destroy()
+def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_choice): #Displays the animation and revials results
 
     def wait():
         win.update()
-        time.sleep(1.5)
+        time.sleep(0.5)
 
     clear_all_window(True)
-    selection_frame_comp.grid(row=1,column=0,sticky='e')
-    selection_but_frame.grid(row=1,column=2,sticky='w')
+    selection_but_frame.grids(1,2,'w')
+    selection_frame_comp.grids(1,0,"e")
 
     tk.Label(selection_but_frame,text="Player:",font=("Arial",15),bg="light goldenrod").grid(row=0,column=0,pady=5,padx=5)
     tk.Label(selection_frame_comp,text="Computer:",font=("Arial",15),bg="light goldenrod").grid(row=0,column=0,padx=5,pady=5)
     comp_text=tk.Label(selection_frame_comp,text="Choice: ??",font=("Arial",15),bg='sky blue')
     comp_text.grid(row=2,column=0,sticky='s',padx=5,pady=5)
     tk.Label(selection_but_frame,text=f"Choice: {player_choice}",font=("Arial",15),bg='sky blue').grid(row=2,column=0,sticky='s',padx=5,pady=5)
-
 
     rock_label=tk.Label(game_tab, text="Rock...",font=("Arial",15))
     rock_image=tk.Label(selection_but_frame, image=rock_img)
@@ -197,7 +145,7 @@ def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_c
     rock_image2.grid(row=1,column=0)
 
     wait()
-    destroy(rock_label,rock_image,rock_image2)
+    destroy_widgets.destroy(rock_label,rock_image,rock_image2)
 
     paper_label=tk.Label(game_tab, text="Paper...",font=("Arial",15))
     paper_image=tk.Label(selection_but_frame, image=paper_img)
@@ -207,7 +155,7 @@ def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_c
     paper_image2.grid(row=1,column=0)
 
     wait()
-    destroy(paper_image,paper_image2,paper_label)
+    destroy_widgets.destroy(paper_image,paper_image2,paper_label)
 
     sis_label=tk.Label(game_tab, text="Sicssors...",font=("Arial",15))
     sis_image=tk.Label(selection_but_frame, image=scissors_img)
@@ -217,7 +165,7 @@ def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_c
     sis_image2.grid(row=1,column=0)
 
     wait()
-    destroy(sis_label,sis_image,sis_image2)
+    destroy_widgets.destroy(sis_label,sis_image,sis_image2)
 
     shoot_lable=tk.Label(game_tab,text="Shoot!",font=("Arial",17))
     shoot_lable.grid(row=0,column=1)
@@ -225,12 +173,12 @@ def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_c
     if computer_choice == "rock":   comp=tk.Label(selection_frame_comp, image=rock_img)
     elif computer_choice == "paper": comp=tk.Label(selection_frame_comp, image=paper_img)
     else: comp=tk.Label(selection_frame_comp, image=scissors_img)
-    comp.grid(row=1,column=0,padx=10,sticky='w')
+    comp.grid(row=1,column=0,padx=10,sticky='e')
 
     if player_choice == 'rock': pl=tk.Label(selection_but_frame, image=rock_img)
     elif player_choice == 'paper': pl=tk.Label(selection_but_frame, image=paper_img)
     else: pl=tk.Label(selection_but_frame, image=scissors_img)
-    pl.grid(row=1,column=0,padx=10,sticky='e')
+    pl.grid(row=1,column=0,padx=10,sticky='w')
 
     comp_text.config(text=f"Choice: {computer_choice}")
 
@@ -244,33 +192,26 @@ selection_menu.add(game_tab, text="Game") #Adds tab to notebook
 
 
 #Tab 2
-tally_tab=ttk.Frame(selection_menu)
+tally_tab = tk_frames(selection_menu,0,0)
 
-    #Table (Using TreeView) - stores player and computer scores at the end of a match
-def display_scores_table(scores):
+def display_scores_table(scores): #Table (Using TreeView) - stores player and computer scores at the end of a match
     for round in scores:
         list = []
         for item in round:
             list.append(item)
         table1.insert(list)
 
-
-
+#Scores_table
 headings_table1=["Date","Player","Computer","Winner"]
 widths_table1=[50,100,100,100]
 
 table1 = table(tally_tab, headings_table1)
-#scores_table = ttk.Treeview(tally_tab,columns=(headings_table1), show="headings")
 
 for heading in headings_table1:
     for width in widths_table1:
         table1.create_heading(heading, heading)
         table1.define_column(heading, width)
-#    scores_table.heading(heading, text=heading, anchor="center") #sets heading text
 
-#scores_table.column(heading,anchor='center', stretch='no', width=20)
-
-#scores_table.pack(fill="both", expand=True) 
 table1.pack(fill="both", expand=True)
 selection_menu.add(tally_tab, text="Tally") #Adds tab to notebook
 

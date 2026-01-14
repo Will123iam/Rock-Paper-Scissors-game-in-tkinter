@@ -1,6 +1,6 @@
 from window import *
 from rock_paper_sisors import *
-#from table_class import *
+from class_file import *
 import tkinter as tk
 
 #Tab 1 functions
