@@ -59,9 +59,27 @@ class destroy_widgets():
         for widget in [*args]:
             widget.destroy()
 
+    def remove_all(frame,accept=None): #Can pass widgets/frames through to ignore, otherwise deletes everthing within passed frame
+        for widget in frame.winfo_children():
+            delete=True
+            for item in accept:
+                if item == widget:
+                    print("Cant delete!")
+                    delete=False
+            if delete:
+                widget.destroy()
+                print("Deleted!")
+        
+    def hide_all(frame):
+        for widget in frame.winfo_children():
+            widget.grid_forget()
+
+
 class load_image(tk.PhotoImage):
     def __init__(self,file):
         tk.PhotoImage.__init__(self,file=file)
+
+
 
 
 

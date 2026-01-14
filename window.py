@@ -9,16 +9,7 @@ win.title("Rock Paper Scissors")
 win.geometry("500x300")
 win.config(bg='turquoise')
 
-#class images():
-#    def __init__(self,path):
-#        self.image=tk.PhotoImage(file=path)
-
-#    def scale_down(self,scale):
-#        return self.image.subsample(scale)
-
-#    def scale_up(self,scale):
-#        return self.image.zoom(scale)
-
+#Loading iamges and re-sizing them
 rock_img=load_image("images/rock.png")
 paper_img=load_image("images/paper.png")
 scissors_img=load_image("images/scissors.png")
@@ -27,8 +18,6 @@ rock_img1=rock_img.subsample(3)
 new_rock_img=rock_img.subsample(5)
 new_paper_img=paper_img.subsample(14)
 new_scissors_img=scissors_img.subsample(7)
-
-#rock_img_scale_but = rock_img.subsample(2)
 
 def clear_all_window(frames):
     for widget in game_tab.winfo_children():
@@ -105,8 +94,11 @@ def num_rounds_display():
     ttk.Entry(selction_frame, textvariable=rounds_entry).grid(row=2,column=1)
     win.update()
 
+class image_button(tk.Label):
+    def __init__(self):
+        pass
+
 def show_images_selction(rock_img,paper_img,sicssors_img): #displayes the hand images on player and compters side
-    #down=rock_img.subsample(3)
     #Player
     tk.Label(selection_but_frame,text="Player:",font=("Arial",15),bg="light goldenrod").grid(row=0,column=0,pady=5,padx=5)
     tk.Label(selection_but_frame, image=rock_img,bg="hot pink").grid(row=1,column=0,padx=5)
