@@ -2,10 +2,15 @@ from window import *
 from rock_paper_sisors import *
 from class_file import *
 import tkinter as tk
+import pygame
 
 #Tab 1 functions
 def start_game():
     num_rounds()
+
+pick_music(music_style_set.get())
+
+if music_set.get() == True: pygame.mixer.music.play(-1)
 
 welcome()
 

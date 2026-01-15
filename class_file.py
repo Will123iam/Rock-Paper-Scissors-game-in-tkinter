@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import pygame
 
 class table():
     def __init__(self, master, headings):
@@ -94,6 +95,8 @@ class style_create(ttk.Style): #Creates a style
             if hover_colours: #Only if item is a button
                 if item == "Radiobutton" or "Checkbutton":
                     self.map(f'{name}.T{item}', background=[("active",hover_colours[0]),("!disabled",hover_colours[1]),])
+
+
 
 
 

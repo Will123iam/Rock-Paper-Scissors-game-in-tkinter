@@ -9,6 +9,8 @@ win.title("Rock Paper Scissors")
 win.geometry("500x300")
 win.config(bg='turquoise')
 
+pygame.mixer.init()
+
 #Loading iamges and re-sizing them
 rock_img=load_image("images/rock.png")
 paper_img=load_image("images/paper.png")
@@ -18,6 +20,12 @@ rock_img1=rock_img.subsample(3)
 new_rock_img=rock_img.subsample(5)
 new_paper_img=paper_img.subsample(14)
 new_scissors_img=scissors_img.subsample(7)
+
+def pick_music(choice):
+    if choice == 0: pygame.mixer.music.load("music/one.mp3")
+    elif choice == 1: pygame.mixer.music.load("music/two.mp3")
+    elif choice == 2: pass
+    elif choice == 3: pass
 
 def display_score(player,computer):
     score_label = tk.Label(game_tab, text=f"Player: {player}  Computer: {computer}", font=("Arial", 15))
@@ -200,11 +208,22 @@ music_frame = tk_frames(settings_tab,4,4,relief='raised',style='cream.TFrame')
 music_frame.grids(1,0,sticky='n')
 
 def en_dis():
-    if music_set.get() == False: enable=tk.DISABLED
-    else: enable=tk.NORMAL
+    if music_set.get() == False: 
+        enable=tk.DISABLED
+        pygame.mixer.music.pause()
+    else: 
+        enable=tk.NORMAL
+        pygame.mixer.music.play()
 
     for widget in style_select_frame.winfo_children():
         widget.config(state=enable)
+
+def change_music():
+    pick_music(music_style_set.get())
+    pygame.mixer.music.play()
+
+def change_volume(value):
+    pygame.mixer.music.set_volume((volume_set.get()/100))
 
 tk.Label(music_frame,text="Music Options",font=("Arils",18,"bold"),bg="navajo white").grid(row=0,column=0,sticky='w',padx=10,pady=5)
 
@@ -213,20 +232,20 @@ volume_frame=tk_frames(music_frame,3,1,relief='raised',style="blanched_almond.TF
 volume_frame.grid(row=0,column=2,pady=10)
 tk.Label(volume_frame,text="Min",font=("Arils",10),bg="blanched almond").grid(row=0,column=0,sticky='w',padx=10,pady=10)
 tk.Label(volume_frame,text="Max",font=("Arils",10),bg="blanched almond").grid(row=0,column=3,sticky='e',padx=10,pady=10)
-ttk.Scale(volume_frame,from_=0,to=100,length=100,orient='horizontal',variable=volume_set).grid(row=0,column=2)
+ttk.Scale(volume_frame,from_=0,to=100,length=100,orient='horizontal',variable=volume_set,command=change_volume).grid(row=0,column=2)
 
 #Sound on/off
 sound_controll_frame = tk_frames(music_frame,1,2,relief='raised',style="blanched_almond.TFrame")
 sound_controll_frame.grid(row=1,column=0,padx=10,pady=10)
 ttk.Checkbutton(sound_controll_frame,text="Enable Music",variable=music_set,style="blanched_almond.TRadiobutton", command=en_dis).grid(row=0,column=0,padx=10,pady=10)
-ttk.Checkbutton(sound_controll_frame,text="Soud Effects",variable=effects_set,style="blanched_almond.TRadiobutton").grid(row=1,column=0,padx=10,pady=10)
+ttk.Checkbutton(sound_controll_frame,text="Sound Effects",variable=effects_set,style="blanched_almond.TRadiobutton").grid(row=1,column=0,padx=10,pady=10)
 #Music style select
 style_select_frame = tk_frames(music_frame,2,1,relief='raised',style="blanched_almond.TFrame")
 style_select_frame.grid(row=1,column=2,padx=10,pady=10)
-ttk.Radiobutton(style_select_frame,text="Style One",value=0,variable=music_style_set,style="blanched_almond.TRadiobutton").grid(row=1,column=1,padx=10,pady=10)
-ttk.Radiobutton(style_select_frame,text="Style Two",value=1,variable=music_style_set,style="blanched_almond.TRadiobutton").grid(row=2,column=1,padx=10,pady=10)
-ttk.Radiobutton(style_select_frame,text="Style Three",value=2,variable=music_style_set,style="blanched_almond.TRadiobutton").grid(row=1,column=2,padx=10,pady=10)
-ttk.Radiobutton(style_select_frame,text="Style Four",value=3,variable=music_style_set,style="blanched_almond.TRadiobutton").grid(row=2,column=2,padx=10,pady=10)
+ttk.Radiobutton(style_select_frame,text="Style One",value=0,variable=music_style_set,style="blanched_almond.TRadiobutton",command=change_music).grid(row=1,column=1,padx=10,pady=10)
+ttk.Radiobutton(style_select_frame,text="Style Two",value=1,variable=music_style_set,style="blanched_almond.TRadiobutton",command=change_music).grid(row=2,column=1,padx=10,pady=10)
+ttk.Radiobutton(style_select_frame,text="Style Three",value=2,variable=music_style_set,style="blanched_almond.TRadiobutton",command=change_music).grid(row=1,column=2,padx=10,pady=10)
+ttk.Radiobutton(style_select_frame,text="Style Four",value=3,variable=music_style_set,style="blanched_almond.TRadiobutton",command=change_music).grid(row=2,column=2,padx=10,pady=10)
 
 selection_menu.add(settings_tab, text="Settings") #Adds tab to notebook
 

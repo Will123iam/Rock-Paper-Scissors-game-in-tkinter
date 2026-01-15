@@ -1,6 +1,6 @@
 #Validates imputs
 from window import *
-import time, datetime
+import time, datetime, pygame
 
 def animate_comp_selection(x,rock_img,paper_img,sicssor_img,label): #Cycles through all 3 images on computers side
 

@@ -1,7 +1,7 @@
 from validation import *
 from window import *
 from storing_scores import *
-import random, time, datetime
+import random, time, datetime, pygame
 
 def loop(): #Basically the main game
     selction_frame.grid_forget() #Hides rounds selection menu
@@ -30,7 +30,7 @@ def loop(): #Basically the main game
     destroy_widgets.remove_all(game_tab,accept=frames)
     for frame in frames: destroy_widgets.remove_all(frame)
     destroy_widgets.hide_all(game_tab)
-    
+
     display_score(p,c)
     store_score(get_date(),p,c) #Pass scores to be stored
 
@@ -98,4 +98,3 @@ def play_round():
     else: tk.Label(game_tab, text="Its a tie!",font=("Arial", 15)).grid(row=1,column=1,sticky='n')
     
     return winner
-
