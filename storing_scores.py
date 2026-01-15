@@ -64,8 +64,15 @@ def store_score(date,player,computer):
 
     return "Saved!"
 
+def store_settings():
+    settings_record = open("settings_record.txt",'w')
+    settings_to_store = [music_set.get(),effects_set.get(),music_style_set.get(),volume_set.get()]
+    
+    for item in settings_to_store: settings_record.write(str(item)+'\n')
+
 def store_score_close():
     store_score(False,0,0)
+    store_settings()
     win.destroy()
 
 

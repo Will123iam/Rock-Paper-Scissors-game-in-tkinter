@@ -31,6 +31,19 @@ def display_score(player,computer):
     score_label = tk.Label(game_tab, text=f"Player: {player}  Computer: {computer}", font=("Arial", 15))
     score_label.grid(row=0,column=1)
 
+def load_settings():
+    settings_record = open("settings_record.txt",'r')
+    settings=[]
+    count=0
+    for line in settings_record: 
+        if count == 0 or count == 1: 
+            settings.append(eval(line[:-1]))
+        elif count == 2: settings.append(int(line[:-1]))
+        elif count == 3: settings.append(float(line[:-1]))
+
+        count+=1
+    return settings
+
 #Styles creation
 blue_style=style_create("blue","clam",'sky blue',items={"Frame"})
 cream_style=style_create("cream","clam","navajo white",items={"Frame"})
@@ -193,10 +206,12 @@ selection_menu.add(tally_tab, text="Tally") #Adds tab to notebook
 #Tab 3 - Settings tab
 
 #tk varibles
-music_set = tk.BooleanVar(value=True)
-effects_set = tk.BooleanVar(value=True)
-music_style_set = tk.IntVar(value=0)
-volume_set = tk.DoubleVar(value=100)
+
+settings=load_settings()
+music_set = tk.BooleanVar(value=settings[0])
+effects_set = tk.BooleanVar(value=settings[1])
+music_style_set = tk.IntVar(value=settings[2])
+volume_set = tk.DoubleVar(value=settings[3])
 
 #Frames
 settings_tab = tk_frames(selection_menu,1,4,style="blanched_almond.TFrame")
@@ -207,13 +222,13 @@ tk.Label(settings_tab,text="Settings",font=("Arils",20,"bold"),bg="blanched almo
 music_frame = tk_frames(settings_tab,4,4,relief='raised',style='cream.TFrame')
 music_frame.grids(1,0,sticky='n')
 
-def en_dis():
+def en_dis(click=True):
     if music_set.get() == False: 
         enable=tk.DISABLED
         pygame.mixer.music.pause()
     else: 
         enable=tk.NORMAL
-        pygame.mixer.music.play()
+        if click: pygame.mixer.music.play()
 
     for widget in style_select_frame.winfo_children():
         widget.config(state=enable)
@@ -246,6 +261,8 @@ ttk.Radiobutton(style_select_frame,text="Style One",value=0,variable=music_style
 ttk.Radiobutton(style_select_frame,text="Style Two",value=1,variable=music_style_set,style="blanched_almond.TRadiobutton",command=change_music).grid(row=2,column=1,padx=10,pady=10)
 ttk.Radiobutton(style_select_frame,text="Style Three",value=2,variable=music_style_set,style="blanched_almond.TRadiobutton",command=change_music).grid(row=1,column=2,padx=10,pady=10)
 ttk.Radiobutton(style_select_frame,text="Style Four",value=3,variable=music_style_set,style="blanched_almond.TRadiobutton",command=change_music).grid(row=2,column=2,padx=10,pady=10)
+
+en_dis(click=False)
 
 selection_menu.add(settings_tab, text="Settings") #Adds tab to notebook
 
