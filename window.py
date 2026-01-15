@@ -27,10 +27,16 @@ new_paper_img=paper_img.subsample(14)
 new_scissors_img=scissors_img.subsample(7)
 
 def pick_music(choice):
-    if choice == 0: pygame.mixer.music.load("music/one.mp3")
-    elif choice == 1: pygame.mixer.music.load("music/two.mp3")
-    elif choice == 2: pass
-    elif choice == 3: pass
+    try:
+        if choice == 0: pygame.mixer.music.load("music/Karl_Casey@White_bat_Audio.mp3")
+        elif choice == 1: pygame.mixer.music.load("music/two.mp3")
+        elif choice == 2: pygame.mixer.music.load("music/three.mp3")
+        elif choice == 3: pygame.mixer.music.load("music/four")
+    except:
+        pygame.mixer.music.load("music/error.mp3")
+        error_label1=tk.Label(win,text="No file found!",font=("Arial",15,'bold'),fg='red',bg="white")
+        error_label1.pack()
+        error_label1.after(3000,error_label1.destroy)
 
 def display_score(player,computer):
     score_label = tk.Label(game_tab, text=f"Player: {player}  Computer: {computer}", font=("Arial", 15))
@@ -246,7 +252,7 @@ def en_dis(click=True):
 
 def change_music():
     pick_music(music_style_set.get())
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
 def change_volume(value):
     pygame.mixer.music.set_volume((volume_set.get()/100))
