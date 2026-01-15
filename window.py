@@ -9,7 +9,12 @@ win.title("Rock Paper Scissors")
 win.geometry("500x300")
 win.config(bg='turquoise')
 
+#Sound
 pygame.mixer.init()
+start_sound=pygame.mixer.Sound("sound_effects/start.mp3")
+rumble=pygame.mixer.Sound("sound_effects/rumble.mp3")
+power=pygame.mixer.Sound("sound_effects/power.mp3")
+disk=pygame.mixer.Sound("sound_effects/disk.mp3")
 
 #Loading iamges and re-sizing them
 rock_img=load_image("images/rock.png")
@@ -113,8 +118,11 @@ def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_c
 
     frames = [selection_but_frame,selection_frame_comp,selction_frame]
     destroy_widgets.remove_all(game_tab,accept=frames)
-    for item in frames:
-        destroy_widgets.remove_all(item)
+    for item in frames: destroy_widgets.remove_all(item)
+
+    if effects_set.get():
+        rumble.fadeout(500)
+        power.play()
 
     selection_but_frame.grids(1,2,'w')
     selection_frame_comp.grids(1,0,"e")
@@ -154,6 +162,10 @@ def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_c
 
     wait()
     destroy_widgets.destroy(sis_label,sis_image,sis_image2)
+
+    if effects_set.get(): 
+        power.fadeout(500)
+        disk.play()
 
     shoot_lable=tk.Label(game_tab,text="Shoot!",font=("Arial",17))
     shoot_lable.grid(row=0,column=1)
@@ -206,7 +218,6 @@ selection_menu.add(tally_tab, text="Tally") #Adds tab to notebook
 #Tab 3 - Settings tab
 
 #tk varibles
-
 settings=load_settings()
 music_set = tk.BooleanVar(value=settings[0])
 effects_set = tk.BooleanVar(value=settings[1])
@@ -263,6 +274,7 @@ ttk.Radiobutton(style_select_frame,text="Style Three",value=2,variable=music_sty
 ttk.Radiobutton(style_select_frame,text="Style Four",value=3,variable=music_style_set,style="blanched_almond.TRadiobutton",command=change_music).grid(row=2,column=2,padx=10,pady=10)
 
 en_dis(click=False)
+change_volume(None)
 
 selection_menu.add(settings_tab, text="Settings") #Adds tab to notebook
 

@@ -13,6 +13,7 @@ def loop(): #Basically the main game
     frames = [selection_but_frame,selection_frame_comp,selction_frame]
 
     while rounds > 0:
+        if effects_set.get(): rumble.play()
         choice_entry.set("") # Reset choice entry, preventing from contenuing till a new choice is made
         round_winner = play_round()
         
@@ -47,6 +48,7 @@ def loop(): #Basically the main game
 
 def num_rounds(): #Gets the number of rounds to play from the user
     destroy_widgets.remove_all(game_tab,accept=[selection_but_frame,selection_frame_comp,selction_frame])
+    if effects_set.get(): start_sound.play()
     num_rounds_display()
 
     ttk.Button(selction_frame, text="OK", command=loop).grid(row=2,column=2,sticky='w')
