@@ -23,24 +23,19 @@ def display_score(player,computer):
     score_label = tk.Label(game_tab, text=f"Player: {player}  Computer: {computer}", font=("Arial", 15))
     score_label.grid(row=0,column=1)
 
-#Styles section
+#Styles creation
+blue_style=style_create("blue","clam",'sky blue',items={"Frame"})
+cream_style=style_create("cream","clam","navajo white",items={"Frame"})
+blanched_almond=style_create("blanched_almond","clam","blanched almond",items={"Frame","Radiobutton"},hover_colours=["peach puff","blanched almond"])
 
-s=ttk.Style()
-s.theme_use('clam')
-s.configure('green_style',background='green')
-s.configure('Frame1.TFrame', background='sky blue')
-
-default_style = ttk.Style()
-default_style.theme_use('clam')
-default_style.configure('cream.TFrame', background='navajo white')
 
 selection_menu = ttk.Notebook(win) #Creates the tabs to switch between
 
 #Tab 1
-game_tab = tk_frames(selection_menu,3,3) #Main single player game tab
+game_tab = tk_frames(selection_menu,3,3,style='blue.TFrame') #Main single player game tab
 
-start_frame = tk_frames(game_tab,3,3,relief='flat',style='Frame1.TFrame') #Inner frame start
-selction_frame = tk_frames(game_tab,3,3,relief='flat',style='Frame1.TFrame') #Inner frame rounds selection
+start_frame = tk_frames(game_tab,3,3,relief='flat',style='blue.TFrame') #Inner frame start
+selction_frame = tk_frames(game_tab,3,3,relief='flat',style='blue.TFrame') #Inner frame rounds selection
 selection_but_frame = tk_frames(game_tab,3,3,relief='raised') #Inner frame for player side
 selection_frame_comp = tk_frames(game_tab,2,3,relief='raised') #Inner fram for computer
 
@@ -195,7 +190,7 @@ effects_set = tk.BooleanVar(value=True)
 music_style_set = tk.IntVar(value=0)
 
 #Frames
-settings_tab = tk_frames(selection_menu,1,4)
+settings_tab = tk_frames(selection_menu,1,4,style="blanched_almond.TFrame")
 
 tk.Label(settings_tab,text="Settings",font=("Arils",20),bg="lemon chiffon").grid(column=0,row=0,sticky='n')
 
@@ -205,17 +200,17 @@ music_frame.grids(1,0,sticky='n')
 
 tk.Label(music_frame,text="Music Options",font=("Arils",15),bg="lemon chiffon").grid(row=0,column=0,sticky='w',padx=5,pady=5)
 #Sound on/off
-sound_controll_frame = tk_frames(music_frame,1,2,relief='raised')
+sound_controll_frame = tk_frames(music_frame,1,2,relief='raised',style="blanched_almond.TFrame")
 sound_controll_frame.grid(row=1,column=0,padx=10,pady=10)
-ttk.Checkbutton(sound_controll_frame,text="Enable Music",variable=music_set).grid(row=0,column=0,padx=10,pady=10)
-ttk.Checkbutton(sound_controll_frame,text="Soud Effects",variable=effects_set).grid(row=1,column=0,padx=10,pady=10)
+ttk.Checkbutton(sound_controll_frame,text="Enable Music",variable=music_set,style="blanched_almond.TRadiobutton").grid(row=0,column=0,padx=10,pady=10)
+ttk.Checkbutton(sound_controll_frame,text="Soud Effects",variable=effects_set,style="blanched_almond.TRadiobutton").grid(row=1,column=0,padx=10,pady=10)
 #Music style select
-style_select_frame = tk_frames(music_frame,2,1,relief='raised')
+style_select_frame = tk_frames(music_frame,2,1,relief='raised',style="blanched_almond.TFrame")
 style_select_frame.grid(row=1,column=2,padx=10,pady=10)
-ttk.Radiobutton(style_select_frame,text="Style One",value=0,variable=music_style_set).grid(row=1,column=1,padx=10,pady=10)
-ttk.Radiobutton(style_select_frame,text="Style Two",value=1,variable=music_style_set).grid(row=2,column=1,padx=10,pady=10)
-ttk.Radiobutton(style_select_frame,text="Style Three",value=2,variable=music_style_set).grid(row=1,column=2,padx=10,pady=10)
-ttk.Radiobutton(style_select_frame,text="Style Four",value=3,variable=music_style_set).grid(row=2,column=2,padx=10,pady=10)
+ttk.Radiobutton(style_select_frame,text="Style One",value=0,variable=music_style_set,style="blanched_almond.TRadiobutton").grid(row=1,column=1,padx=10,pady=10)
+ttk.Radiobutton(style_select_frame,text="Style Two",value=1,variable=music_style_set,style="blanched_almond.TRadiobutton").grid(row=2,column=1,padx=10,pady=10)
+ttk.Radiobutton(style_select_frame,text="Style Three",value=2,variable=music_style_set,style="blanched_almond.TRadiobutton").grid(row=1,column=2,padx=10,pady=10)
+ttk.Radiobutton(style_select_frame,text="Style Four",value=3,variable=music_style_set,style="blanched_almond.TRadiobutton").grid(row=2,column=2,padx=10,pady=10)
 
 selection_menu.add(settings_tab, text="Settings") #Adds tab to notebook
 

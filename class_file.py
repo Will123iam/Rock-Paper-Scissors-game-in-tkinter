@@ -83,6 +83,17 @@ class load_image(tk.PhotoImage):
     def __init__(self,file):
         tk.PhotoImage.__init__(self,file=file)
 
+class style_create(ttk.Style): #Creates a style
+    def __init__(self,name,theme,bg_colour,items=None,hover_colours=None):
+        ttk.Style.__init__(self)
+
+        self.theme_use(theme)
+        for item in items:
+            self.configure(f'{name}.T{item}', background=bg_colour)
+
+            if hover_colours: #Only if item is a button
+                if item == "Radiobutton" or "Checkbutton":
+                    self.map(f'{name}.T{item}', background=[("active",hover_colours[0]),("!disabled",hover_colours[1]),])
 
 
 
