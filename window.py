@@ -19,31 +19,6 @@ new_rock_img=rock_img.subsample(5)
 new_paper_img=paper_img.subsample(14)
 new_scissors_img=scissors_img.subsample(7)
 
-def clear_all_window(frames):
-    for widget in game_tab.winfo_children():
-        if widget != selection_but_frame and widget != selection_frame_comp and widget != selction_frame:
-            widget.destroy()
-    
-    for widget in selection_but_frame.winfo_children():
-        widget.destroy()
-    
-    for widget in selection_frame_comp.winfo_children():
-        widget.destroy()
-
-    for widget in selction_frame.winfo_children():
-        widget.destroy()
-
-    if frames == True:
-        selection_but_frame.grid_forget()
-        selection_frame_comp.grid_forget()
-        #selction_frame.grid_forget()
-    
-
-def clear_window(): #Stupid
-    for widget in game_tab.winfo_children():
-        if widget != selection_but_frame and widget != selection_frame_comp and widget != selction_frame:
-            widget.destroy()
-
 def display_score(player,computer):
     score_label = tk.Label(game_tab, text=f"Player: {player}  Computer: {computer}", font=("Arial", 15))
     score_label.grid(row=0,column=1)
@@ -94,10 +69,6 @@ def num_rounds_display():
     ttk.Entry(selction_frame, textvariable=rounds_entry).grid(row=2,column=1)
     win.update()
 
-class image_button(tk.Label):
-    def __init__(self):
-        pass
-
 def show_images_selction(rock_img,paper_img,sicssors_img): #displayes the hand images on player and compters side
     #Player
     tk.Label(selection_but_frame,text="Player:",font=("Arial",15),bg="light goldenrod").grid(row=0,column=0,pady=5,padx=5)
@@ -119,7 +90,11 @@ def display_animation(rock_img, paper_img, scissors_img,player_choice,computer_c
         win.update()
         time.sleep(0.5)
 
-    clear_all_window(True)
+    frames = [selection_but_frame,selection_frame_comp,selction_frame]
+    destroy_widgets.remove_all(game_tab,accept=frames)
+    for item in frames:
+        destroy_widgets.remove_all(item)
+
     selection_but_frame.grids(1,2,'w')
     selection_frame_comp.grids(1,0,"e")
 

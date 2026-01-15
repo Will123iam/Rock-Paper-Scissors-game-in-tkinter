@@ -60,15 +60,19 @@ class destroy_widgets():
             widget.destroy()
 
     def remove_all(frame,accept=None): #Can pass widgets/frames through to ignore, otherwise deletes everthing within passed frame
-        for widget in frame.winfo_children():
-            delete=True
-            for item in accept:
-                if item == widget:
-                    print("Cant delete!")
-                    delete=False
-            if delete:
+        if accept:
+            for widget in frame.winfo_children():
+                delete=True
+                for item in accept:
+                    if item == widget:
+                        print("Cant delete!")
+                        delete=False
+                if delete:
+                    widget.destroy()
+                    print("Deleted!")
+        else:
+            for widget in frame.winfo_children():
                 widget.destroy()
-                print("Deleted!")
         
     def hide_all(frame):
         for widget in frame.winfo_children():

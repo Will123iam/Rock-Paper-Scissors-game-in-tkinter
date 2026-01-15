@@ -10,6 +10,7 @@ def loop(): #Basically the main game
 
     rounds = int(rounds_entry.get()) # sets no. rounds to imputted value
     p,c = 0,0 #sets current score to 0
+    frames = [selection_but_frame,selection_frame_comp,selction_frame]
 
     while rounds > 0:
         choice_entry.set("") # Reset choice entry, preventing from contenuing till a new choice is made
@@ -19,13 +20,17 @@ def loop(): #Basically the main game
         display_score(p,c)
 
         tk.Label(game_tab,text="Press any button to continue to next round").grid(row=2,column=1,sticky='s')
-        key_press()
+        key_press(frames)
 
-        clear_all_window(False)
+        destroy_widgets.remove_all(game_tab,accept=frames)
+        for frame in frames: destroy_widgets.remove_all(frame)
 
         rounds -= 1
 
-    clear_all_window(True)
+    destroy_widgets.remove_all(game_tab,accept=frames)
+    for frame in frames: destroy_widgets.remove_all(frame)
+    destroy_widgets.hide_all(game_tab)
+    
     display_score(p,c)
     store_score(get_date(),p,c) #Pass scores to be stored
 
@@ -52,6 +57,8 @@ def choices():
 
 def choice_selection(rock_img,paper_img,sicssor_img): #Player and computers choice is made
     computer = random.choice(choices()) #Randomly picks computers choice
+
+    #image_button(selction_frame,rock_img,"hot pink",image_place={"row":1,"column":0,"pady":5,"padx":5},"Rock",choice_entry.set("rock"),butt_place={"row":2,"column":0,"sticky":'n',"pady":5,"padx":5})
     show_images_selction(rock_img,paper_img,sicssor_img) #idk what this done rn
 
     tk.Button(selection_but_frame, text="Rock",command=lambda:choice_entry.set("rock"),font=("Arial",13),fg='blue').grid(row=2,column=0,sticky='n',pady=5,padx=5)
