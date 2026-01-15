@@ -188,21 +188,37 @@ selection_menu.add(tally_tab, text="Tally") #Adds tab to notebook
 music_set = tk.BooleanVar(value=True)
 effects_set = tk.BooleanVar(value=True)
 music_style_set = tk.IntVar(value=0)
+volume_set = tk.DoubleVar(value=100)
 
 #Frames
 settings_tab = tk_frames(selection_menu,1,4,style="blanched_almond.TFrame")
 
-tk.Label(settings_tab,text="Settings",font=("Arils",20),bg="lemon chiffon").grid(column=0,row=0,sticky='n')
+tk.Label(settings_tab,text="Settings",font=("Arils",20,"bold"),bg="blanched almond").grid(column=0,row=0,sticky='n')
 
     #Music settings frame
 music_frame = tk_frames(settings_tab,4,4,relief='raised',style='cream.TFrame')
 music_frame.grids(1,0,sticky='n')
 
-tk.Label(music_frame,text="Music Options",font=("Arils",15),bg="lemon chiffon").grid(row=0,column=0,sticky='w',padx=5,pady=5)
+def en_dis():
+    if music_set.get() == False: enable=tk.DISABLED
+    else: enable=tk.NORMAL
+
+    for widget in style_select_frame.winfo_children():
+        widget.config(state=enable)
+
+tk.Label(music_frame,text="Music Options",font=("Arils",18,"bold"),bg="navajo white").grid(row=0,column=0,sticky='w',padx=10,pady=5)
+
+#Volume controll
+volume_frame=tk_frames(music_frame,3,1,relief='raised',style="blanched_almond.TFrame")
+volume_frame.grid(row=0,column=2,pady=10)
+tk.Label(volume_frame,text="Min",font=("Arils",10),bg="blanched almond").grid(row=0,column=0,sticky='w',padx=10,pady=10)
+tk.Label(volume_frame,text="Max",font=("Arils",10),bg="blanched almond").grid(row=0,column=3,sticky='e',padx=10,pady=10)
+ttk.Scale(volume_frame,from_=0,to=100,length=100,orient='horizontal',variable=volume_set).grid(row=0,column=2)
+
 #Sound on/off
 sound_controll_frame = tk_frames(music_frame,1,2,relief='raised',style="blanched_almond.TFrame")
 sound_controll_frame.grid(row=1,column=0,padx=10,pady=10)
-ttk.Checkbutton(sound_controll_frame,text="Enable Music",variable=music_set,style="blanched_almond.TRadiobutton").grid(row=0,column=0,padx=10,pady=10)
+ttk.Checkbutton(sound_controll_frame,text="Enable Music",variable=music_set,style="blanched_almond.TRadiobutton", command=en_dis).grid(row=0,column=0,padx=10,pady=10)
 ttk.Checkbutton(sound_controll_frame,text="Soud Effects",variable=effects_set,style="blanched_almond.TRadiobutton").grid(row=1,column=0,padx=10,pady=10)
 #Music style select
 style_select_frame = tk_frames(music_frame,2,1,relief='raised',style="blanched_almond.TFrame")
