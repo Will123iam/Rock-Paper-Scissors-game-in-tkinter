@@ -7,7 +7,7 @@ def overall_winner(player,computer):
     else: return "Computer"
 
 def load_scores():
-    scores_record = open("scores_record.txt",'r')
+    scores_record = open(os.path.join(data_location,"scores_record.txt"),'r')
     temp=""
     user=[]
     scores=[] #Prevents dublicats when loading
@@ -36,7 +36,7 @@ def load_scores():
 
 def store_score(date,player,computer):
     previous_scores = load_scores()
-    scores_record = open("scores_record.txt",'w')
+    scores_record = open(os.path.join(data_location,"scores_record.txt"),'w')
     if date != False: matches = previous_scores+[[str(date),str(player),str(computer),str(overall_winner(player,computer))]] #Loads previous scores and appends new score
     else: matches = previous_scores
     #matches.append(previous_scores)
@@ -64,9 +64,19 @@ def store_score(date,player,computer):
 
     return "Saved!"
 
+def store_settings():
+    settings_record = open(os.path.join(data_location,"settings_record.txt"),'w')
+    settings_to_store = [music_set.get(),effects_set.get(),music_style_set.get(),volume_set.get()]
+    
+    for item in settings_to_store: settings_record.write(str(item)+'\n')
+
+    pygame.mixer.music.pause()
+
 def store_score_close():
     store_score(False,0,0)
+    store_settings()
     win.destroy()
+    pygame.quit()
 
 
 #store_score('4','3') #Temp test call

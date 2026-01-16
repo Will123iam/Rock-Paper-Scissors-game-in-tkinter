@@ -1,8 +1,8 @@
 #Validates imputs
 from window import *
-import time
+import time, datetime, pygame
 
-def animate_comp_selection(x,rock_img,paper_img,sicssor_img,label):
+def animate_comp_selection(x,rock_img,paper_img,sicssor_img,label): #Cycles through all 3 images on computers side
 
     if x==0:
         label.destroy()
@@ -46,7 +46,7 @@ def wait(rock_img,paper_img,sicssor_img):
         x+=1
         if x >2: x=0
 
-def key_press():
+def key_press(frams):
     pressed = False
 
     def set_pressed(): #need a better way of doing this
@@ -59,6 +59,19 @@ def key_press():
         win.update()
         time.sleep(0.1)
 
-    clear_window()
+    destroy_widgets.remove_all(game_tab,accept=frams)
 
     return pressed
+
+def get_date():
+    date_now = datetime.datetime.now()
+    date_now = date_now.strftime("%x") #Format date to MM/DD/YYYY
+    return date_now
+
+def image_button(window,image,bg,text,image_place=None,butt_place=None): #Just oh no
+    label=tk.Label(window,image=image,bg=bg)
+    button=tk.Button(window,text=text,font=("Arial",13),fg='blue')
+
+    if image_place: label.grid(**image_place)
+    if butt_place: button.grid(**butt_place)
+

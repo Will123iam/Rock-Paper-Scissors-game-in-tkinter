@@ -2,19 +2,19 @@
 Play Rock, Paper, Scissors now! Can you beat the computer? 
 Download and play my amazing game made using python and tkinter.
 
-<img width="612" height="440" alt="Screenshot 2026-01-13 at 3 18 54 pm" src="https://github.com/user-attachments/assets/1579c064-b1e7-4f04-9f8e-21f8847eb3c6" />
+<img width="612" height="440" alt="Screenshot 2026-01-16 at 12 18 22 pm" src="https://github.com/user-attachments/assets/1cd3577c-f76c-4564-979d-fa8383f6e275" />
 
 ## Downloading and runing the game
-1. Download the files or clone the repositiory
-2. Ensure you have python and tkinter installed
-3. Run the "main.py" file
+Download the game and launch it. If you are on mac, you can move it to your applications folder. To run the source code you must run the "main.py" file.
+The app should open within a couple seconds and you can play.
 
 ## How to play
-1. Launch my amazing app by running the "main.py" file
+1. Launch my amazing app or run the "main.py" file
 2. Select the 'game' tab at the top of the screen
 3. Press on the hand to start the game
 4. Enter the number of rounds you would like to play
 5. Select your choice from the three options
+6. It will beginn to count down before reviling your oponents move
 
 ## Using the tally tab
 Scores at the end of a match are automatically stored in a table, which you can view by pressing the "tally" tab at the top of your screen.
@@ -27,9 +27,27 @@ Information stored within the table includes:
 
 <img width="612" height="440" alt="Screenshot 2026-01-13 at 3 27 03 pm" src="https://github.com/user-attachments/assets/b1c06fb6-7c88-4b68-a0bc-025e7e183cfa" />
 
-## Additional screenshots:
-<img width="612" height="440" alt="Screenshot 2026-01-13 at 3 21 03 pm" src="https://github.com/user-attachments/assets/6b0d8c1f-00e2-4dcc-8837-710363c34742" />
-<img width="612" height="440" alt="Screenshot 2026-01-13 at 3 21 42 pm" src="https://github.com/user-attachments/assets/0863a31a-8f11-46bb-afd3-e96115915082" />
-<img width="612" height="440" alt="Screenshot 2026-01-13 at 3 21 53 pm" src="https://github.com/user-attachments/assets/d0a559a0-9a79-4689-9aa5-025ff489149c" />
-<img width="612" height="440" alt="Screenshot 2026-01-13 at 3 22 05 pm" src="https://github.com/user-attachments/assets/ec70ea6b-b42e-45b7-a01b-58a3c997146e" />
+## Customising the settings
+Under the settings tab you can customise different aspects of your gaming experience. More options will be added in the future!
 
+### Music controll
+Here you can controll all audio aspects of your game play. <br>
+The avalible options include:
+- Volume Controll
+- Enable/Disable Music
+- Enable/Disable Sound Effects
+- Change the style of music - Only style one comes with music
+
+<img width="612" height="440" alt="Screenshot 2026-01-16 at 12 28 04 pm" src="https://github.com/user-attachments/assets/e9d14475-9845-46e8-bab5-f92ff5c81c82" />
+
+## Additional screenshots:
+<p align="center">
+  <p>
+    <img width="306" height="220" alt="Screenshot 2026-01-16 at 12 29 58 pm" src="https://github.com/user-attachments/assets/7f4bff89-81ef-4041-b524-dc883d276aea", headspace="10" />
+    <img width="306" height="220" alt="Screenshot 2026-01-16 at 12 30 23 pm" src="https://github.com/user-attachments/assets/c209646a-c49f-4f63-91c0-497ec3f9f925", headspace="10" />
+  </p>
+  <p>
+    <img width="306" height="220" alt="Screenshot 2026-01-16 at 12 30 34 pm" src="https://github.com/user-attachments/assets/9ef9ce6a-40fd-4c6a-805a-b69eb53b6747" />
+    <img width="306" height="220" alt="Screenshot 2026-01-16 at 12 30 57 pm" src="https://github.com/user-attachments/assets/384958bd-8669-40af-a2e3-ed3734642336" />
+  </p>
+</p>
