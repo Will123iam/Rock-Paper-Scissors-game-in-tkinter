@@ -43,11 +43,11 @@ The avalible options include:
 ## Additional screenshots:
 <p align="center">
   <p>
-    <img width="459" height="330" alt="Screenshot 2026-01-16 at 12 29 58 pm" src="https://github.com/user-attachments/assets/7f4bff89-81ef-4041-b524-dc883d276aea", headspace="10" />
-    <img width="459" height="330" alt="Screenshot 2026-01-16 at 12 30 23 pm" src="https://github.com/user-attachments/assets/c209646a-c49f-4f63-91c0-497ec3f9f925", headspace="10" />
+    <img width="306" height="220" alt="Screenshot 2026-01-16 at 12 29 58 pm" src="https://github.com/user-attachments/assets/7f4bff89-81ef-4041-b524-dc883d276aea", headspace="10" />
+    <img width="306" height="220" alt="Screenshot 2026-01-16 at 12 30 23 pm" src="https://github.com/user-attachments/assets/c209646a-c49f-4f63-91c0-497ec3f9f925", headspace="10" />
   </p>
   <p>
-    <img width="459" height="330" alt="Screenshot 2026-01-16 at 12 30 34 pm" src="https://github.com/user-attachments/assets/9ef9ce6a-40fd-4c6a-805a-b69eb53b6747" />
-    <img width="459" height="330" alt="Screenshot 2026-01-16 at 12 30 57 pm" src="https://github.com/user-attachments/assets/384958bd-8669-40af-a2e3-ed3734642336" />
+    <img width="306" height="220" alt="Screenshot 2026-01-16 at 12 30 34 pm" src="https://github.com/user-attachments/assets/9ef9ce6a-40fd-4c6a-805a-b69eb53b6747" />
+    <img width="306" height="220" alt="Screenshot 2026-01-16 at 12 30 57 pm" src="https://github.com/user-attachments/assets/384958bd-8669-40af-a2e3-ed3734642336" />
   </p>
 </p>
