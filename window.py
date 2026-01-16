@@ -2,24 +2,48 @@ import tkinter as tk
 from tkinter import ttk
 #from rock_paper_sisors import *
 from class_file import *
-import time
+import time, sys, os, platform, shutil
 
 win=tk.Tk()
 win.title("Rock Paper Scissors")
 win.geometry("500x300")
 win.config(bg='turquoise')
 
+def resource_path(relative_path): #copilot as i cant be botherd rn
+    """Return absolute path to resource, works for dev and PyInstaller.""" 
+    if hasattr(sys, '_MEIPASS'): base_path = sys._MEIPASS # PyInstaller temp folder 
+    else: base_path = os.path.dirname(os.path.abspath(__file__)) # Script folder 
+    return os.path.join(base_path, relative_path)#End of copilot code
+
+def save_loccation():
+    if platform.system() == "WINDOWS": appdata=os.getenv("APPDATA")
+    elif platform.system() == "Darwin": appdata=os.path.expanduser("~/Library/Application Support")
+    else: print("Unsupported!")
+
+    data_location=os.path.join(appdata,"Rock_Paper_Scissors")
+    if not os.path.exists(data_location):
+        os.makedirs(data_location,exist_ok=True)
+        source = resource_path("settings_record.txt")
+        source2 = resource_path("scores_record.txt")
+        target = data_location
+        shutil.copy(source,target)
+        shutil.copy(source2,target)
+
+    return data_location
+
+data_location=save_loccation()
+
 #Sound
 pygame.mixer.init()
-start_sound=pygame.mixer.Sound("sound_effects/start.mp3")
-rumble=pygame.mixer.Sound("sound_effects/rumble.mp3")
-power=pygame.mixer.Sound("sound_effects/power.mp3")
-disk=pygame.mixer.Sound("sound_effects/disk.mp3")
+start_sound=pygame.mixer.Sound(resource_path("sound_effects/start.mp3"))
+rumble=pygame.mixer.Sound(resource_path("sound_effects/rumble.mp3"))
+power=pygame.mixer.Sound(resource_path("sound_effects/power.mp3"))
+disk=pygame.mixer.Sound(resource_path("sound_effects/disk.mp3"))
 
 #Loading iamges and re-sizing them
-rock_img=load_image("images/rock.png")
-paper_img=load_image("images/paper.png")
-scissors_img=load_image("images/scissors.png")
+rock_img=load_image(resource_path("images/rock.png"))
+paper_img=load_image(resource_path("images/paper.png"))
+scissors_img=load_image(resource_path("images/scissors.png"))
 
 rock_img1=rock_img.subsample(3)
 new_rock_img=rock_img.subsample(5)
@@ -28,12 +52,12 @@ new_scissors_img=scissors_img.subsample(7)
 
 def pick_music(choice):
     try:
-        if choice == 0: pygame.mixer.music.load("music/Karl_Casey@White_bat_Audio.mp3")
-        elif choice == 1: pygame.mixer.music.load("music/two.mp3")
-        elif choice == 2: pygame.mixer.music.load("music/three.mp3")
-        elif choice == 3: pygame.mixer.music.load("music/four")
+        if choice == 0: pygame.mixer.music.load(resource_path("music/Karl_Casey@White_bat_Audio.mp3"))
+        elif choice == 1: pygame.mixer.music.load(resource_path("music/two.mp3"))
+        elif choice == 2: pygame.mixer.music.load(resource_path("music/three.mp3"))
+        elif choice == 3: pygame.mixer.music.load(resource_path("music/four"))
     except:
-        pygame.mixer.music.load("music/error.mp3")
+        pygame.mixer.music.load(resource_path("music/error.mp3"))
         error_label1=tk.Label(win,text="No file found!",font=("Arial",15,'bold'),fg='red',bg="white")
         error_label1.pack()
         error_label1.after(3000,error_label1.destroy)
@@ -43,7 +67,7 @@ def display_score(player,computer):
     score_label.grid(row=0,column=1)
 
 def load_settings():
-    settings_record = open("settings_record.txt",'r')
+    settings_record = open(os.path.join(data_location,"settings_record.txt"),'r')
     settings=[]
     count=0
     for line in settings_record: 
