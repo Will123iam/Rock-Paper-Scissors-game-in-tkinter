@@ -16,9 +16,9 @@ def resource_path(relative_path): #copilot as i cant be botherd rn
     return os.path.join(base_path, relative_path)#End of copilot code
 
 def save_loccation():
-    if platform.system() == "WINDOWS": appdata=os.getenv("APPDATA")
+    if platform.system() == "Windows": appdata=os.path.expanduser("~")
     elif platform.system() == "Darwin": appdata=os.path.expanduser("~/Library/Application Support")
-    else: print("Unsupported!")
+    else: print("Unsupported!",platform.system())
 
     data_location=os.path.join(appdata,"Rock_Paper_Scissors")
     if not os.path.exists(data_location):
