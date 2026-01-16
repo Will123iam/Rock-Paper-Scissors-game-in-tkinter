@@ -70,6 +70,8 @@ def store_settings():
     
     for item in settings_to_store: settings_record.write(str(item)+'\n')
 
+    pygame.mixer.music.pause()
+
 def store_score_close():
     store_score(False,0,0)
     store_settings()
