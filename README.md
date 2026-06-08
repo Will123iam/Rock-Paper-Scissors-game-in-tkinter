@@ -1,6 +1,8 @@
 # Rock Paper Scissors
 Play Rock, Paper, Scissors now! Can you beat the computer? 
-Download and play my amazing game made using python and tkinter.
+Download and play my game made using python and tkinter.
+
+Developing this app as helped introduce me to basic tkinter concepts and develop an understanding of data structures.
 
 <img width="612" height="440" alt="Screenshot 2026-01-16 at 12 18 22 pm" src="https://github.com/user-attachments/assets/1cd3577c-f76c-4564-979d-fa8383f6e275" />
 
@@ -9,12 +11,12 @@ Download the game and launch it. If you are on mac, you can move it to your appl
 The app should open within a couple seconds and you can play.
 
 ## How to play
-1. Launch my amazing app or run the "main.py" file
+1. Launch the downloaded application file or run the "main.py" file
 2. Select the 'game' tab at the top of the screen
 3. Press on the hand to start the game
 4. Enter the number of rounds you would like to play
 5. Select your choice from the three options
-6. It will beginn to count down before reviling your oponents move
+6. It will begin to count down before reviling your oponents move
 
 ## Using the tally tab
 Scores at the end of a match are automatically stored in a table, which you can view by pressing the "tally" tab at the top of your screen.
